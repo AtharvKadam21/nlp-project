@@ -1,0 +1,13 @@
+title Grapheme to Phoneme Converter
+
+User->Website: Enter word string
+Website->Grapheme Dictionary: Request grapheme for string
+Grapheme Dictionary->IPA: Convert string to graphemes
+IPA-->Website: Return phonemes for each grapheme
+Website->GTTS API: Send phoneme for audio
+GTTS API-->Website: Return audio example for phoneme
+note over Website: Display IPA and Example on the web page
+User->Website: Click Audio button
+Website-->User: Audio example is played
+
+

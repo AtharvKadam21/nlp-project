@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPA and Example Audio</title>
+</head>
+<body>
+    <h1>IPA and Example with Audio</h1>
+    
+    <form method="POST">
+        <input type="text" name="user_input" placeholder="Enter a string" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if output_strings %}
+        <h2>Outputs</h2>
+        <ul>
+            {% for output in output_strings %}
+                <li>
+                    {{ output }}
+                    <!-- Button to play the audio, using key as filename -->
+                    <button onclick="playAudio('{{ loop.index }}')">Play Audio</button>
+                    <audio id="audio{{ loop.index }}">
+                        <source src="{{ url_for('static', filename='audio/' + output.split(':')[0].strip() + '.mp3') }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <script>
+        function playAudio(index) {
+            var audio = document.getElementById('audio' + index);
+            audio.play();
+        }
+    </script>
+</body>
+</html>
